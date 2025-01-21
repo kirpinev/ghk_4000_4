@@ -15,10 +15,15 @@ import { useState } from "react";
 export const App = () => {
   const [loading, setLoading] = useState(false);
 
-  const submit = () => {
+  const clickProcessing = () => {
     setLoading(true);
+
     Promise.resolve().then(() => {
+      window.gtag("event", "4000_processing_click", {
+        variant_name: "ghk_4000_4",
+      });
       setLoading(false);
+      LS.setItem(LSKeys.ShowProcessing, true);
       LS.setItem(LSKeys.ShowThx, true);
     });
   };
@@ -177,7 +182,7 @@ export const App = () => {
       <div className={appSt.bottomBtnThx}>
         <ButtonMobile
           loading={loading}
-          onClick={submit}
+          onClick={clickProcessing}
           block
           view="primary"
           href=""

@@ -3,13 +3,29 @@ import { ButtonMobile } from "@alfalab/core-components/button/mobile";
 import moai from "../assets/moai.png";
 import { thxSt } from "./style.css";
 import { appSt } from "../style.css.ts";
+import { useEffect } from "react";
+import { LS, LSKeys } from "../ls";
 
 export const ThxLayout = () => {
   const clickSuccess = () => {
-    window.gtag("event", "3505_ok_click", {
-      variant_name: "ghk_4000_4",
-    });
+    if (!LS.getItem(LSKeys.ClickThanks, false)) {
+      window.gtag("event", "4000_thnx_click", {
+        variant_name: "ghk_4000_4",
+      });
+
+      LS.setItem(LSKeys.ClickThanks, true);
+    }
   };
+
+  useEffect(() => {
+    if (!LS.getItem(LSKeys.ShowThanks, false)) {
+      window.gtag("event", "4000_end_page_view", {
+        variant_name: "ghk_4000_4",
+      });
+
+      LS.setItem(LSKeys.ShowThanks, true);
+    }
+  }, []);
 
   return (
     <>
