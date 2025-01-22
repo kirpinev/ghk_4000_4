@@ -7,7 +7,7 @@ import { LS, LSKeys } from "../ls";
 export const ThxLayout = () => {
   useEffect(() => {
     if (!LS.getItem(LSKeys.ShowThanks, false)) {
-      window.gtag("event", "4000_end_page_view", {
+      window.gtag("event", "4000_end_page_view_var4", {
         variant_name: "ghk_4000_4",
       });
 
